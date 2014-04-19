@@ -18,3 +18,6 @@ Possible sources of more data from Indian Goverment Data portal.
 1) Which disease is the major cause of deaths in India?
 2) What is the correlation with each disease and age groups?
 3) What is the relationship of the death of genders with the diseases?
+
+
+

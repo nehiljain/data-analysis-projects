@@ -4,6 +4,6 @@ recursive_loading: off
 munging: on
 logging: off
 load_libraries: on
-libraries: reshape2, plyr, ggplot2, stringr, lubridate, rattle, dplyr
+libraries: reshape2, plyr, ggplot2, stringr, lubridate, rattle, dplyr, shiny
 as_factors: on
 data_tables: off
