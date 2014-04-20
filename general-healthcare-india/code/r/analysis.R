@@ -20,13 +20,13 @@ shortfall_data$primary_health_centres_phcs_shortfall <- shortfall_data$primary_h
 shortfall_data$community_health_centres_chcs_shortfall <- shortfall_data$community_health_centres_chcs_required - shortfall_data$community_health_centres_chcs_in_position
 
 
-analysis_data <- cbind(shortfall_data$state_ut shortfall_data$sub_centres_shortfall, no_of_sc_raw_data$govt_effort, shortfall_data$primary_health_centres_phcs_shortfall, no_of_phc_raw_data$govt_effort,shortfall_data$community_health_centres_chcs_shortfall, no_of_chc_raw_data$govt_effort)
+analysis_data <- cbind( shortfall_data$sub_centres_shortfall, no_of_sc_raw_data$govt_effort, shortfall_data$primary_health_centres_phcs_shortfall, no_of_phc_raw_data$govt_effort,shortfall_data$community_health_centres_chcs_shortfall, no_of_chc_raw_data$govt_effort)
 analysis_data <- as.data.frame(analysis_data)
-names(analysis_data) <- c("state_and_ut","sc_shortfall", "sc_govt_effort", "phc_shortfall", "phc_govt_effort","chc_shortfall", "chc_govt_effort")
+names(analysis_data) <- c("sc_shortfall", "sc_govt_effort", "phc_shortfall", "phc_govt_effort","chc_shortfall", "chc_govt_effort")
 analysis_data$sc_govt_effect <-  analysis_data$sc_govt_effort - analysis_data$sc_shortfall
 analysis_data$phc_govt_effect <-  analysis_data$phc_govt_effort - analysis_data$phc_shortfall
 analysis_data$chc_govt_effect <-  analysis_data$chc_govt_effort - analysis_data$chc_shortfall 
-
+analysis_data$state_and_ut <- shortfall_data$state_ut
 
 write.csv(analysis_data,file="data/final-data/statewise_healthcare_infrastructure_analysis.csv")
 save(analysis_data, file="data/final-data/statewise_healthcare_infrastructure_analysis.Rda")
