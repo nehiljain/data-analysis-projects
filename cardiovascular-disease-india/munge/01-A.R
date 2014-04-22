@@ -23,9 +23,9 @@ india.chd.data.Prevalence.Number <- india.chd.data.Prevalence[11:25,]
 india.chd.data.Deaths <- india.chd.data.Deaths[1:28,]
 names(india.chd.data.Deaths) <- c ("gbd code", "category number", " gbd cause", 
                                    "gbd sub case", 
-                                   "person 0-14", "person 15-59", "person 60 above", 
-                                   "males 0-14", "males 15-59" , "males 60 above", 
-                                   "females 0-14", "females 15-59", "females 60 above")
+                                   "person 0 14", "person 15 59", "person 60 above", 
+                                   "males 0 14", "males 15 59" , "males 60 above", 
+                                   "females 0 14", "females 15 59", "females 60 above")
 india.chd.data.Deaths <- india.chd.data.Deaths[-c(1,2),]
 
 
@@ -54,3 +54,9 @@ for (i in 1:length(india.chd.data.Deaths$category_number)) {
     india.chd.data.Deaths$gbd_cause[i] <- india.chd.data.Deaths$gbd_sub_case[i]
   }
 }
+india.chd.data.Deaths <- melt(india.chd.data.Deaths, id.vars=c("gbd_code", "category_number", "gbd_cause", 
+                                               "gbd_sub_case"))
+india.chd.data.Deaths$variable <- as.character(temp1$variable)
+
+india.chd.data.Deaths$gender <- lapply(temp1$variable, function(x) str_split(x, "_", n=2)[[1]][1])
+india.chd.data.Deaths$age <- lapply(temp1$variable, function(x) str_split(x, "_", n=2)[[1]][2])
