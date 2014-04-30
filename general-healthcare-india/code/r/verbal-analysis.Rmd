@@ -1,4 +1,4 @@
-Shortfall in Health Infrastructure vs GOvernment Funding
+Shortfall in Health Infrastructure vs Government Funding
 ========================================================
 
 This is a document showing some results we found by doing EDA(Explorartory Data Analysis) on healthcare datasets from data.gov.in. 
@@ -7,20 +7,35 @@ The analysis.R script does some data wrangling and create a table with shortfall
 ```{r}
 require(ggplot2)
 require(dplyr)
+require(reshape2)
 source("analysis.R")
 ```
 
 You can also embed plots, for example:
 
-```{r fig.width=7, fig.height=4}
-qplot(x=sc_shortfall, data=analysis_data, binwidth=50) +
-  scale_x_continuous(limits=c(-2000,15000))
+```{r fig.width=10, fig.height=10}
+histogram_Data <- melt(analysis_data, id=c("state_and_ut"))
+noTotalsData <- filter(histogram_Data, state_and_ut != c("All India Total"))
+qplot(x=value, data=noTotalsData, binwidth=100) + 
+  facet_wrap(~variable)
 ```
 
-This shows us that in the sub centre infrastrucure. Two states are the real outliers. Lets find out which ones are they. 
+This shows us that in the sub centre infrastrucure. Two states are the real outliers. The main problematics states are ..
 
 ```{r}
 analysis_data %.%
-  filter(sc_shortfall > 5000) %.%
-  select( state_and_ut)
+  filter(state_and_ut != c("All India Total"), sc_shortfall > 2000)  %.%
+  arrange(desc(sc_shortfall)) %.%
+  select(state_and_ut, sc_shortfall)
 ```
+
+
+When we add the amount of effort government is putting to improve the matters
+```{r}
+analysis_data %.%
+  filter(state_and_ut != c("All India Total"), sc_shortfall > 2000)  %.%
+  arrange(desc(sc_shortfall)) %.%
+  select(state_and_ut, sc_shortfall, sc_govt_effort)
+```
+
+
