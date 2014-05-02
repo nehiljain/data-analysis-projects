@@ -9,6 +9,6 @@ shinyUI(pageWithSidebar(
                 selected = "sc_shortfall")
   ),
   mainPanel(
-    showOutput("myChart", "NVD3")
+    showOutput("myChart")
   )
 ))
