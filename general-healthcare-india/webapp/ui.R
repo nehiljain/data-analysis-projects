@@ -1,14 +1,17 @@
-require(rCharts)
+library(shiny)
+library(ggplot2)
 shinyUI(pageWithSidebar(
-  headerPanel("rCharts: Interactive Charts from R using polychart.js"),
+  headerPanel("Healthcare ke Shortfalls in India"),
   
   sidebarPanel(
-    selectInput(inputId = "x",
-                label = "Choose X",
-                choices = c('sc_shortfall', 'phc_shortfall', 'chc_shortfall'),
-                selected = "sc_shortfall")
+    selectInput("variable", "Variable:",
+                list("Sub Center" = "sc_govt_effect", 
+                     "Public HC" = "phc_govt_effect", 
+                     "Community HC" = "chc_govt_effect"))
   ),
   mainPanel(
-    showOutput("myChart")
+    h3(textOutput("caption")),
+    plotOutput("myChart")
   )
 ))
+
