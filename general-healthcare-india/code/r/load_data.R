@@ -18,7 +18,7 @@ names(pop_density) <- normVarNames(names(pop_density))
 pop_density$state_and_ut <- llply(pop_density$state_and_ut, function(x) str_trim(str_split(x, "#")[[1]][1], side="both"))
 pop_density$state_and_ut[25] <- c("Delhi")
 pop_density$state_and_ut[26] <- c("Odisha")
-
+pop_density$pop_density <- str_replace_all(pop_density$pop_density, "[[:punct:]]", "")
 shortfall_data <- read.csv("../../data/raw-data/Shortfall_In_Health_Infra_As_Per_2011_Population_Prov_In_India_2.csv")
 names(shortfall_data) <- normVarNames(names(shortfall_data))
 setwd("~/coderepo/data-analysis-projects/general-healthcare-india/");
