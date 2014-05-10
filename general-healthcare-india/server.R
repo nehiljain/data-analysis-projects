@@ -47,10 +47,10 @@ shinyServer(function(input, output) {
   }, height = 700, width = 900)
 })
 
-ggplot(imrData, aes(x=imrData$states_and_ut, y=imrData$imr_per_pop_d)) +
-  geom_bar(stat = "identity"),
-aes(fill = imrData$imr_per_pop_d > 0 ,
-    legend = FALSE) +
-  geom_text(label = imrData$states_and_ut,
-            vjust = 0.5, hjust = 0.5, angle = 90 ) +
-  theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+
+
+# 
+# ggplot(imrData, aes(x=imrData$states_ut, y=imrData$imr_per_pop_d)) +
+# geom_bar(stat="identity", fill="lightseagreen", legend = FALSE) +
+#      coord_flip()
+
