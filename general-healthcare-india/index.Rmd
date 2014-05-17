@@ -68,11 +68,21 @@ Sub Center Shortfalls
 For the sub centers
 
 
+The summary of sub cnter shortfalls. 
+Evidently the Mean and Median are higher as compared to Public Health Center and Community Health Center.
+
+Some states to be worried about are Uttar Pradesh and Bihar. There is already a surplus in Kerala and Govt. si still working in imporving the sub center infrastructre.
+
+In general, the state goveronment is not putting enough effort in comparison to the shortfall in most of the states. 
+
 
 ```{r cache=TRUE, echo=FALSE, message=FALSE,warning=FALSE}
 print(summary(analysis_data$sc_shortfall))
 
+```
 
+
+```{r cache=TRUE, echo=FALSE, message=FALSE,warning=FALSE}
 ggplot(data=sc_viz_data, aes(x=state_and_ut, y=value, fill=variable)) +
   geom_bar(stat = "identity",
            position = position_dodge()) +
@@ -88,7 +98,11 @@ Primary Health Center Shortfalls
 ```{r cache=TRUE, echo=FALSE, message=FALSE,warning=FALSE}
 
 print(summary(analysis_data$phc_shortfall))
+```
 
+
+
+```{r cache=TRUE, echo=FALSE, message=FALSE,warning=FALSE}
 ggplot(data=phc_viz_data, aes(x=state_and_ut, y=value, fill=variable)) +
   geom_bar(stat = "identity",
            position = position_dodge()) +
@@ -103,8 +117,11 @@ Community Health Center Shortfalls
 ```{r cache=TRUE, echo=FALSE, message=FALSE,warning=FALSE}
 
 summary(analysis_data$chc_shortfall)
+```
 
 
+
+```{r cache=TRUE, echo=FALSE, message=FALSE,warning=FALSE}
 ggplot(data=chc_viz_data, aes(x=state_and_ut, y=value, fill=variable)) +
   geom_bar(stat = "identity",
            position = position_dodge()) +

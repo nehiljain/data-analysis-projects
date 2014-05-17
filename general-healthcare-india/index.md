@@ -64,6 +64,13 @@ Sub Center Shortfalls
 For the sub centers
 
 
+The summary of sub cnter shortfalls. 
+Evidently the Mean and Median are higher as compared to Public Health Center and Community Health Center.
+
+Some states to be worried about are Uttar Pradesh and Bihar. There is already a surplus in Kerala and Govt. si still working in imporving the sub center infrastructre.
+
+In general, the state goveronment is not putting enough effort in comparison to the shortfall in most of the states. 
+
 
 
 ```
@@ -71,7 +78,9 @@ For the sub centers
 ##   -1190     -89      27     861     729   10500
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
+
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
 
 
 
@@ -84,7 +93,10 @@ Primary Health Center Shortfalls
 ## -1010.0    -9.5     5.0   152.0   144.0  1480.0
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
+
+
+
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
 
 
 
@@ -96,7 +108,10 @@ Community Health Center Shortfalls
 ##   -78.0    -2.0     3.0    71.0    69.5   778.0
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
+
+
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7.png) 
 
 
 
