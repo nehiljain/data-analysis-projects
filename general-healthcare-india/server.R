@@ -1,10 +1,10 @@
 require(ggplot2)
 require(dplyr)
-require(reshape2)
+# require(reshape2)
 require(scales)
 require(shiny) 
 require(grid)
-source("load_data.R")
+# source("load_data.R")
 source("analysis.R")
 
 

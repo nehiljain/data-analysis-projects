@@ -1,7 +1,6 @@
-require(rattle)
-require(xlsx)
+load("inputRawData.RData")
 
-setwd("~/coderepo/data-analysis-projects/general-healthcare-india/");
+# setwd("~/coderepo/data-analysis-projects/general-healthcare-india/");
 no_of_chc_raw_data$govt_effort <- no_of_chc_raw_data$eleventh_plan_as_on_march_2011_2007_2012 - no_of_chc_raw_data$tenth_plan_2002_2007
 no_of_phc_raw_data$govt_effort <- no_of_phc_raw_data$eleventh_plan_as_on_march_2011_2007_2012 - no_of_phc_raw_data$tenth_plan_2002_2007
 no_of_sc_raw_data$govt_effort <- no_of_sc_raw_data$eleventh_plan_as_on_march_2011_2007_2012 - no_of_sc_raw_data$tenth_plan_2002_2007
@@ -39,4 +38,4 @@ analysis_data$chc_govt_effect <-  (analysis_data$chc_govt_effort - analysis_data
 
 write.csv(analysis_data,file="data/final-data/statewise_healthcare_infrastructure_analysis.csv")
 save(analysis_data, file="data/final-data/statewise_healthcare_infrastructure_analysis.Rda")
-setwd("~/coderepo/data-analysis-projects/general-healthcare-india/");
+# setwd("~/coderepo/data-analysis-projects/general-healthcare-india/");

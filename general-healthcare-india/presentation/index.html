@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+  <head>  
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="plot.js"></script>
+<style>
+
+#shortfall-plots{
+  font: 14px helvetica;
+  color: #f0f0f0;
+  background-color: #3E4651;
+}
+
+.chart rect {
+  stroke: white;
+  fill-opacity: .6;
+  fill: steelblue;
+ 
+}
+.bar.positive {
+  fill: #91cf60;
+}
+ 
+.bar.negative {
+  fill: #fc8d59;
+}
+ 
+.axis text {
+  font: 10px sans-serif;
+  fill: #f0f0f0;
+}
+ 
+.axis path, .axis line {
+  fill: none;
+  stroke: #f0f0f0;
+  shape-rendering: crispEdges;
+}
+ 
+ 
+</style>
+  
+  </head>
+  <body>
+  <div id="shortfall-plots">
+    <button class="btn btn-success" onclick="update(2)">update</button>
+  </div>
+ 
+  
+<script>
+ 
+// var data = [["AAwSSA",0.012, 10], ["BwdwASS",-0.025, 12], ["Cewwe",0.008, -11], ["DqAeweS",0.023, -23], ["BSw",-0.025, 12], ["CAwasd",0.008, -11],["AASSwA",0.012, 10], ["BdwwASS",-0.025, 12], ["Cewwe",0.008, -11], ["DAeweS",0.023, -23], ["BewS",-0.025, 12], ["CwAeasd",0.008, -11], ["DAasdardS",0.023, -23], ["BASAawsdasdSS",-0.025, 12], ["CdAS",0.008, -11],["BwwS",-0.025, 12], ["CwAatsd",0.008, -11], ["DAatsdadS",0.023, -23], ["BasdasdSS",-0.025, 12], ["CdAS",0.008, -11],["BwfS",-0.025, 12], ["CwAasd",0.008, -11], ["DAawsdadS",0.023, -23], ["BAewrtsdSS",-0.025, 12], ["CdAS",0.008, -11], ["Dwd",0.023, -23], ["XAS",0.023, -23],["YAS",0.023, -23], ["Ed",-0.009, 6], ["FAS", 0.005,5]];
+
+
+  var data = [["AAwSSA",0.012, 10], ["BwdwASS",-0.025, 12], ["Cewwe",0.008, -11], ["DqAeweS",0.023, -23], ["BSw",-0.025, 12], ["CAwasd",0.008, -11],["AASSwA",0.012, 10], ["BdwwASS",-0.025, 12], ["Cewwe",0.008, -11], ["DAeweS",0.023, -23], ["BewS",-0.025, 12], ["CwAeasd",0.008, -11], ["DAasdardS",0.023, -23], ["BASAawsdasdSS",-0.025, 12], ["CdAS",0.008, -11],["BwwS",-0.025, 12], ["CwAatsd",0.008, -11], ["DAatsdadS",0.023, -23], ["BasdasdSS",-0.025, 12], ["CdAS",0.008, -11],["BwfS",-0.025, 12], ["CwAasd",0.008, -11], ["DAawsdadS",0.023, -23], ["BAewrtsdSS",-0.025, 12], ["CdAS",0.008, -11], ["Dwd",0.023, -23], ["XAS",0.023, -23],["YAS",0.023, -23], ["Ed",-0.009, 6], ["FAS", 0.005,5]];
+ 
+
+update(1);
+
+ 
+function update(index) {
+  d3.select("#shortfall-plots")
+    .datum(data)
+      .call(columnChart()
+        .width(960)
+        .height(500)
+        .x(function(d, i) { return d[0]; })
+        .y(function(d, i) { return d[index]; }));
+}
+
+
+ 
+</script>
+ 
+ 
+  </body>
+</html>
