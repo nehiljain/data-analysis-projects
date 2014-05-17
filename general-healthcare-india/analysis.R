@@ -29,13 +29,25 @@ analysis_data <- analysis_data %.%
   filter(state_and_ut != c("All India Total"))
 
 #Merge the pop density
-analysis_data <- merge(analysis_data, pop_density, by="state_and_ut")
-analysis_data$pop_density <- as.numeric(analysis_data$pop_density)
-analysis_data$sc_govt_effect <-  (analysis_data$sc_govt_effort - analysis_data$sc_shortfall)/analysis_data$pop_density
-analysis_data$phc_govt_effect <-  (analysis_data$phc_govt_effort - analysis_data$phc_shortfall)/analysis_data$pop_density
-analysis_data$chc_govt_effect <-  (analysis_data$chc_govt_effort - analysis_data$chc_shortfall)/analysis_data$pop_density
+
+raw_analysis_data <- analysis_data
+
+
+
+analysis_data$sc_govt_effect <-  (analysis_data$sc_govt_effort - analysis_data$sc_shortfall)
+
+
+analysis_data$phc_govt_effect <-  (analysis_data$phc_govt_effort - analysis_data$phc_shortfall)
+
+
+analysis_data$chc_govt_effect <-  (analysis_data$chc_govt_effort - analysis_data$chc_shortfall)
 
 
 write.csv(analysis_data,file="data/final-data/statewise_healthcare_infrastructure_analysis.csv")
 save(analysis_data, file="data/final-data/statewise_healthcare_infrastructure_analysis.Rda")
 # setwd("~/coderepo/data-analysis-projects/general-healthcare-india/");
+
+sc_viz_data <- melt(analysis_data[,c("state_and_ut","sc_shortfall","sc_govt_effort","sc_govt_effect")], id.vars=c("state_and_ut"))
+phc_viz_data <- melt(analysis_data[,c("state_and_ut","phc_shortfall","phc_govt_effort","phc_govt_effect")], id.vars=c("state_and_ut"))
+chc_viz_data <- melt(analysis_data[,c("state_and_ut","chc_shortfall","chc_govt_effort","chc_govt_effect")], id.vars=c("state_and_ut"))
+

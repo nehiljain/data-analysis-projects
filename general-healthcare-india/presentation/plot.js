@@ -9,6 +9,7 @@ function columnChart() {
       yScale = d3.scale.linear(),
       yAxis = d3.svg.axis().scale(yScale).orient("left"),
       xAxis = d3.svg.axis().scale(xScale);
+  
       
 
   function chart(selection) {

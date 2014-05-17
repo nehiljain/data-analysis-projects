@@ -43,17 +43,6 @@ require(reshape2)
 source("analysis.R")
 ```
 
-```
-## Loading required package: rattle
-## Rattle: A free graphical interface for data mining with R.
-## Version 3.0.2 r169 Copyright (c) 2006-2013 Togaware Pty Ltd.
-## Type 'rattle()' to shake, rattle, and roll your data.
-## Loading required package: xlsx
-## Loading required package: rJava
-## Loading required package: xlsxjars
-## Loading required package: stringr
-```
-
 
 You can also embed plots, for example:
 
