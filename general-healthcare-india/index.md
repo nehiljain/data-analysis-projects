@@ -67,7 +67,7 @@ For the sub centers
 The summary of sub cnter shortfalls. 
 Evidently the Mean and Median are higher as compared to Public Health Center and Community Health Center.
 
-Some states to be worried about are Uttar Pradesh and Bihar. There is already a surplus in Kerala and Govt. si still working in imporving the sub center infrastructre.
+Some states to be worried about are *Uttar Pradesh* and *Bihar*. There is already a surplus in Kerala and Govt. si still working in imporving the sub center infrastructre.
 
 In general, the state goveronment is not putting enough effort in comparison to the shortfall in most of the states. 
 
@@ -94,6 +94,8 @@ Primary Health Center Shortfalls
 ```
 
 
+
+The states to be worried about are **West Bengal**, **Uttar Pradesh**, **Bihar**. The state of Karnataka is seeing amazing progress in PHCs as there is a huge surplus of PHCs and Govt. is putting in the maximum effort as compared to all the other states and uts. 
 
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
