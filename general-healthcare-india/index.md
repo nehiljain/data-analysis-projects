@@ -61,13 +61,10 @@ There are several questions which we wish to contemplate from the data.
 Sub Center Shortfalls
 ----------------------
 
-For the sub centers
-
-
 The summary of sub cnter shortfalls. 
 Evidently the Mean and Median are higher as compared to Public Health Center and Community Health Center.
 
-Some states to be worried about are *Uttar Pradesh* and *Bihar*. There is already a surplus in Kerala and Govt. si still working in imporving the sub center infrastructre.
+Some states to be worried about are *Uttar Pradesh* and *Bihar*. Which is contrary to the promises made by the health Minister at the time here in the [TOI article](http://timesofindia.indiatimes.com/city/patna/Health-sub-centre-at-every-village-in-state/articleshow/7174791.cms).There is already a surplus in Kerala and Govt. si still working in imporving the sub center infrastructre.
 
 In general, the state goveronment is not putting enough effort in comparison to the shortfall in most of the states. 
 
