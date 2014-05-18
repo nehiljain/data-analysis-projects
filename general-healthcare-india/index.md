@@ -95,8 +95,7 @@ Primary Health Center Shortfalls
 
 
 
-The states to be worried about are **West Bengal**, **Uttar Pradesh**, **Bihar**. The state of Karnataka is seeing amazing progress in PHCs as there is a huge surplus of PHCs and Govt. is putting in the maximum effort as compared to all the other states and uts. 
-
+The states to be worried about are **West Bengal**, **Uttar Pradesh**, **Bihar**. The state of Karnataka is seeing amazing progress in PHCs as there is a huge surplus of PHCs and Govt. is putting in the maximum effort as compared to all the other states and uts. According to this dataset based on the rural population in different states, Tamil Nadu is not doing so bad but this [article in Hindu](http://www.thehindu.com/todays-paper/tp-features/tp-downtown/article2309749.ece?css=print) does not ??depict?? that. 
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
 
