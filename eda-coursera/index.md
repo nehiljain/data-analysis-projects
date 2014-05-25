@@ -89,7 +89,8 @@ str(classificationData)
 
 
 
-Problem 1
+## Problem 1
+Have total emissions from PM2.5 decreased in the United States from 1999 to 2008? Make a plot showing the total PM2.5 emission from all sources for each of the years 1999, 2002, 2005, and 2008.
 
 I need to subset the emissions for each level in year and sum it.
 
@@ -102,17 +103,17 @@ totalYearwiseData <- as.data.frame(totalYearwiseData)
 # totalYearwiseData$year <- factor(totalYearwiseData$year)
 
 p1 <- ggplot(data = totalYearwiseData, aes(x = year, y = total_emissions))
-p1 + geom_bar(stat = "identity", aes(fill = year))
+p1 + geom_bar(stat = "identity", aes(fill = -year))
 ```
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
 
 
 
-Problem 2
+## Problem 2
+Have total emissions from PM2.5 decreased in the Baltimore City, Maryland (fips == "24510") from 1999 to 2008?
 
-In Baltimore Only
-
+To answer this I create a subset of the data using the 
 
 ```r
 BaltimoreData <- filter(emissionsData, fips == "24510")
@@ -120,9 +121,11 @@ totalEmissionBaltimoreData <- BaltimoreData %.% group_by(year) %.% summarise(tot
 totalEmissionBaltimoreData <- as.data.frame(totalEmissionBaltimoreData)
 
 p1 <- ggplot(data = totalEmissionBaltimoreData, aes(x = year, y = total_emissions))
-p1 + geom_bar(stat = "identity", aes(fill = year))
+p1 + geom_bar(stat = "identity", aes(fill = -year))
 ```
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
 
+
+Answer: Overall yes it has decreased but there was a spike in 2005 unlike the overall trend shown in the previous bar graph
 

@@ -1,30 +1,11 @@
 Course Project 2
 ========================================================
-```{r echo=FALSE, message=FALSE,warning=FALSE}
-require(ggplot2)
-require(dplyr)
-require(reshape2)
-library(rattle)
-```
 
-Read in the RDS files given in the assignment. Use the normalisae variable names from rattle to mkae the variable names into a standard format. Make the pollutatnt name and fips as factor variables. 
+# Introduction
 
-```{r}
-classificationData <- readRDS("exdata-data-NEI_data/Source_Classification_Code.rds")
-emissionsData <- readRDS("exdata-data-NEI_data/summarySCC_PM25.rds")
-names(emissionsData) <- normVarNames(names(emissionsData))
-names(classificationData) <- normVarNames(names(classificationData))
-# emissionsData$pollutant <- factor(emissionsData$pollutant)
-# emissionsData$fips <- factor(emissionsData$fips)
-```
+Fine particulate matter (PM2.5) is an ambient air pollutant for which there is strong evidence that it is harmful to human health. In the United States, the Environmental Protection Agency (EPA) is tasked with setting national ambient air quality standards for fine PM and for tracking the emissions of this pollutant into the atmosphere. Approximately every 3 years, the EPA releases its database on emissions of PM2.5. This database is known as the National Emissions Inventory (NEI). You can read more information about the NEI at the EPA National Emissions Inventory web site.
 
-
-
-# Intro
-
-Fine particulate matter (PM2.5) is an ambient air pollutant for which there is strong evidence that it is harmful to human health. In the United States, the Environmental Protection Agency (EPA) is tasked with setting national ambient air quality standards for fine PM and for tracking the emissions of this pollutant into the atmosphere. Approximatly every 3 years, the EPA releases its database on emissions of PM2.5. This database is known as the National Emissions Inventory (NEI). You can read more information about the NEI at the EPA National Emissions Inventory web site.
-
-Data
+# Data
 
 The data for this assignment are available from the course web site as a single zip file:
 
@@ -40,6 +21,28 @@ PM2.5 Emissions Data (summarySCC_PM25.rds): This file contains a data frame with
 - type: The type of source (point, non-point, on-road, or non-road)
 - year: The year of emissions recorded
 
+
+```{r echo=FALSE, message=FALSE,warning=FALSE}
+require(ggplot2)
+require(dplyr)
+require(reshape2)
+library(rattle)
+```
+
+Read in the RDS files given in the assignment. Use the normalize variable names function from rattle package to make the variable names into a standard format. 
+
+```{r}
+classificationData <- readRDS("exdata-data-NEI_data/Source_Classification_Code.rds")
+emissionsData <- readRDS("exdata-data-NEI_data/summarySCC_PM25.rds")
+names(emissionsData) <- normVarNames(names(emissionsData))
+names(classificationData) <- normVarNames(names(classificationData))
+emissionsData$pollutant <- factor(emissionsData$pollutant)
+emissionsData$type <- factor(emissionsData$type)
+# emissionsData$fips <- factor(emissionsData$fips)
+```
+
+
+
 Below I show the summary of the variables, there type and some values. I have also tbl_df from dplyr to print a lot of data to the screen
 
 ```{r }
@@ -53,7 +56,7 @@ str(classificationData)
 ## Problem 1
 Have total emissions from PM2.5 decreased in the United States from 1999 to 2008? Make a plot showing the total PM2.5 emission from all sources for each of the years 1999, 2002, 2005, and 2008.
 
-I need to subset the emissions for each level in year and sum it.
+I need to subset the emissions for each level in year and sum it. Because we compare the result of years, year is a ordinal variable. That is the reason I fill the bars with sequential color. 
 
 
 ```{r }
@@ -62,27 +65,40 @@ totalYearwiseData <- emissionsData %.%
   group_by(year) %.%
   summarise(total_emissions = sum(emissions))
 totalYearwiseData <- as.data.frame(totalYearwiseData)
-# totalYearwiseData$year <- factor(totalYearwiseData$year)
+
 
 p1 <- ggplot(data = totalYearwiseData, aes(x = year, y = total_emissions))
 p1 + geom_bar(stat="identity", aes(fill=-year))
 ```
 
+Answer: Yes it has been declining from 1999. 
 
 ## Problem 2
 Have total emissions from PM2.5 decreased in the Baltimore City, Maryland (fips == "24510") from 1999 to 2008?
 
-To answer this I create a subset of the data using the 
+To answer this I create a subset of the data using the filter() from dplyr to contain data of Baltimore City only.
 ```{r }
 BaltimoreData <- filter(emissionsData, fips == "24510")
-totalEmissionBaltimoreData <- BaltimoreData %.%
-  group_by(year) %.%
-  summarise(total_emissions = sum(emissions))
-totalEmissionBaltimoreData <- as.data.frame(totalEmissionBaltimoreData)
 
-p1 <- ggplot(data = totalEmissionBaltimoreData, aes(x = year, y = total_emissions))
-p1 + geom_bar(stat="identity", aes(fill=-year))
+p2 <- ggplot(data = BaltimoreData, aes(x = year, y = emissions))
+p2 <- p2 + geom_bar(stat="identity", aes(fill=-year))
 ```
 
-Answer: Overall yes it has decreased but there was a spike in 2005 unlike the overall trend shown in the previous bar graph
+Answer: 
+Overall yes it has decreased but there was a spike in 2005 unlike the overall trend shown in the previous bar graph
+
+
+## Problem 3
+Of the four types of sources indicated by the type (point, nonpoint, onroad, nonroad) variable, which of these four sources have seen decreases in emissions from 1999–2008 for Baltimore City? Which have seen increases in emissions from 1999–2008? Use the ggplot2 plotting system to make a plot answer this question.
+
+```{r}
+p3 <- p2 + facet_grid(. ~ type)
+```
+
+Answer:
+This reveals many different aspects of the pollution due to the types of sources. Non-point contribute the most to the pollution in Baltimore. Point source pollution has not decreased over the years which is an exception to all the other type of the sources.
+
+
+
+
 
