@@ -113,15 +113,18 @@ There are two formats
 	- you can do this with coord_cartesian(ylim , xlim), no subsetting happens in this case
 - Cut() function to make categories out of continuous data variable
 
+## Clustering
+
+This is good to visualise mutltidimensional data
+
+### Common - Agglomerative Approach
+
+You calculate the dist function. 	
 
 
-To DO
+To Do
 ========
 
-
-
-
-Simpsons Paradox
-
+* Simpsons Paradox
 * More details required
 
