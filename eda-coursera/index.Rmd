@@ -99,6 +99,51 @@ Answer:
 This reveals many different aspects of the pollution due to the types of sources. Non-point contribute the most to the pollution in Baltimore. Point source pollution has not decreased over the years which is an exception to all the other type of the sources.
 
 
+## Problem 4
+Across the United States, how have emissions from coal combustion-related sources changed from 1999–2008?
+
+To answer this I create a data set with left outer join if the the two data frames. 
+```{r}
+completeData <- merge(x=emissionsData, y=classificationData, by="scc", all.x=T)
+
+coalDataSet <- filter(completeData,str_detect(completeData$ei_sector, "* Coal"))
+
+p4 <- ggplot(data = coalDataSet, aes(x = year, y = emissions))
+p4 <- p4 + geom_bar(stat="identity", aes(fill=-year))
+p4
+```
+
+Answer:
+Has been on a decline recently and not so much before.
+
+## Problem 5
+How have emissions from motor vehicle sources changed from 1999–2008 in Baltimore City?
+
+
+```{r}
+
+vehiclesBaltimoreData <- completeData %.%
+                            filter(fips == "24510") %.%
+                            filter(scc_level_one == "Internal Combustion Engines")
+
+p5 <- ggplot(data = vehiclesBaltimoreData, aes(x = year, y = emissions))
+p5 <- p5 + geom_bar(stat="identity", aes(fill=-year))
+p5
+```
 
 
 
+
+
+## Problem 6
+Compare emissions from motor vehicle sources in Baltimore City with emissions from motor vehicle sources in Los Angeles County, California (fips == "06037"). Which city has seen greater changes over time in motor vehicle emissions?
+
+```{r}
+vehicles2CitiesData <- completeData %.%
+                            filter(fips == "24510" | fips == "06037") %.%
+                            filter(scc_level_one == "Internal Combustion Engines")
+
+p6 <- ggplot(data = vehicles2CitiesData, aes(x = year, y = emissions))
+p6 <- p6 + geom_bar(stat="identity", aes(fill=-year)) + facet_grid(. ~ fips)
+p6
+```
