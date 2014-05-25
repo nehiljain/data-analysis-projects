@@ -1,4 +1,6 @@
+This the resourcpe file 
 
+All the functions are in R and plots in ggplot2.
 
 
 Principles of Analytics Graphics
@@ -29,9 +31,12 @@ Properties
 
 One Dim Summaries
 
-* Five Number Summary
+* Five Number Summary 
+	* summary() 
 * Boxplots
+	* qplot(var1, var2, data, geom="boxplot")
 * Histograms
+	*
 * Density plots
 * Barplot
 
