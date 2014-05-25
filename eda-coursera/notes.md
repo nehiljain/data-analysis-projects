@@ -83,11 +83,35 @@ There are two formats
 	- Not good for large number of points
 - Bitmapped Graphics
 	- good for lots of different points, colors, lossless compression
-	- do not resize well 
-### qplot() will default screen device
-### 
+	- do not resize well
 
 
+# Ggplot2
+
+- Grammar of Graphics
+- qplot()
+	- quick plot
+	- similar to plot() in base
+	- plots are made of aesthetics[size, color, shape] and geoms
+- Factors indicate subsets of data
+- Facets = panels of plots
+- Components
+	- Data frame with all data in it
+	- asthetic mappings - when constant u can assign directly but to assign to a data variable you need to wrap with aes()
+	- geoms
+	- facets
+	- stats -  statistical mappings
+	- scales
+	- cordinate system
+- Plots built in layers
+	- plot the data
+	- overlay summary
+	- metadata and annotation
+- Axis Limits
+	- sometimes you want to ignore the outlier
+	- you can change the ylim() but ggplot will subset the data to be in the limit
+	- you can do this with coord_cartesian(ylim , xlim), no subsetting happens in this case
+- Cut() function to make categories out of continuous data variable
 
 
 
