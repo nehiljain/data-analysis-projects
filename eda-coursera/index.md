@@ -1,11 +1,13 @@
 Course Project 2
 ========================================================
 
-# Introduction
+This is the a descriptive document of the course project 2 (https://class.coursera.org/exdata-002). I have not followed the guidlines verbatim as my purpose was to avoid any R related problems and understand the concepts using the knowledge I have. I have strictly used ggplot2 package for plotting.
+
+# Introduction 
 
 Fine particulate matter (PM2.5) is an ambient air pollutant for which there is strong evidence that it is harmful to human health. In the United States, the Environmental Protection Agency (EPA) is tasked with setting national ambient air quality standards for fine PM and for tracking the emissions of this pollutant into the atmosphere. Approximately every 3 years, the EPA releases its database on emissions of PM2.5. This database is known as the National Emissions Inventory (NEI). You can read more information about the NEI at the EPA National Emissions Inventory web site.
 
-# Data
+# Data Set
 
 The data for this assignment are available from the course web site as a single zip file:
 
@@ -21,11 +23,19 @@ PM2.5 Emissions Data (summarySCC_PM25.rds): This file contains a data frame with
 - type: The type of source (point, non-point, on-road, or non-road)
 - year: The year of emissions recorded
 
+Source Classification Code Table (Source_Classification_Code.rds): This table provides a mapping from the SCC digit strings int he Emissions table to the actual name of the PM2.5 source. The sources are categorized in a few different ways from more general to more specific and you may choose to explore whatever categories you think are most useful. For example, source “10100101” is known as “Ext Comb /Electric Gen /Anthracite Coal /Pulverized Coal”
+
+
+# Data Analysis
 
 
 
 
-Read in the RDS files given in the assignment. Use the normalize variable names function from rattle package to make the variable names into a standard format. 
+Steps
+
+- Read in the RDS files given in the assignment. 
+- Use the normalize variable names function from rattle package to make the variable names into a standard format.
+- Convert the pollutant and type variables from character data type to factors as it is used in the answering a few questions below.
 
 
 ```r
@@ -47,8 +57,9 @@ emissionsData$type <- factor(emissionsData$type)
 
 
 
+- Get the summary of the data frames. Their variables, type and some values. 
+- Convert tbl_df from dplyr package to prevent the printing of a lot of data to the screen by accident.
 
-Below I show the summary of the variables, there type and some values. I have also tbl_df from dplyr to print a lot of data to the screen
 
 
 ```r
@@ -95,7 +106,8 @@ str(classificationData)
 ## Problem 1
 Have total emissions from PM2.5 decreased in the United States from 1999 to 2008? Make a plot showing the total PM2.5 emission from all sources for each of the years 1999, 2002, 2005, and 2008.
 
-I need to subset the emissions for each level in year and sum it. Because we compare the result of years, year is a ordinal variable. That is the reason I fill the bars with sequential color. 
+- Subset the emissions for each level in year and sum it. 
+- Because we compare the result of years, year is a ordinal variable. That is the reason I fill the bars with sequential color coding scheme. 
 
 
 
@@ -109,35 +121,45 @@ p1 <- ggplot(data = totalYearwiseData, aes(x = year, y = total_emissions))
 p1 + geom_bar(stat = "identity", aes(fill = -year))
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
+<img src="figure/prob1Chunk.png" title="plot of chunk prob1Chunk" alt="plot of chunk prob1Chunk" style="display: block; margin: auto;" />
 
 
-Answer: Yes it has been declining from 1999. 
+Answer: 
+Yes it has been declining from 1999 to 2008. 
 
 ## Problem 2
 Have total emissions from PM2.5 decreased in the Baltimore City, Maryland (fips == "24510") from 1999 to 2008?
 
-To answer this I create a subset of the data using the filter() from dplyr to contain data of Baltimore City only.
+- Subset of the data using the filter() from dplyr to contain data of Baltimore City only; using the fips given.
+
 
 ```r
 BaltimoreData <- filter(emissionsData, fips == "24510")
 
 p2 <- ggplot(data = BaltimoreData, aes(x = year, y = emissions))
 p2 <- p2 + geom_bar(stat = "identity", aes(fill = -year))
+p2
 ```
+
+<img src="figure/prob2Chunk.png" title="plot of chunk prob2Chunk" alt="plot of chunk prob2Chunk" style="display: block; margin: auto;" />
 
 
 Answer: 
-Overall yes it has decreased but there was a spike in 2005 unlike the overall trend shown in the previous bar graph
+Overall yes it has decreased but there was a spike in 2005 unlike the overall trend shown in the previous plot for entire country.
 
 
 ## Problem 3
 Of the four types of sources indicated by the type (point, nonpoint, onroad, nonroad) variable, which of these four sources have seen decreases in emissions from 1999–2008 for Baltimore City? Which have seen increases in emissions from 1999–2008? Use the ggplot2 plotting system to make a plot answer this question.
 
+- Use Facetting to create plots for each level of type factor variable.
+
 
 ```r
 p3 <- p2 + facet_grid(. ~ type)
+p3
 ```
+
+<img src="figure/prob3Chunk.png" title="plot of chunk prob3Chunk" alt="plot of chunk prob3Chunk" style="display: block; margin: auto;" />
 
 
 Answer:
@@ -150,32 +172,17 @@ Across the United States, how have emissions from coal combustion-related source
 To answer this I create a data set with left outer join if the the two data frames. 
 
 ```r
-completeDataSet <- merge(x = emissionsData, y = classificationData, by = "scc", 
+completeData <- merge(x = emissionsData, y = classificationData, by = "scc", 
     all.x = T)
 
 coalDataSet <- filter(completeData, str_detect(completeData$ei_sector, "* Coal"))
-```
-
-```
-## Error: object 'completeData' not found
-```
-
-```r
 
 p4 <- ggplot(data = coalDataSet, aes(x = year, y = emissions))
-```
-
-```
-## Error: object 'coalDataSet' not found
-```
-
-```r
 p4 <- p4 + geom_bar(stat = "identity", aes(fill = -year))
+p4
 ```
 
-```
-## Error: object 'p4' not found
-```
+<img src="figure/prob4Chunk.png" title="plot of chunk prob4Chunk" alt="plot of chunk prob4Chunk" style="display: block; margin: auto;" />
 
 
 Answer:
@@ -190,28 +197,13 @@ How have emissions from motor vehicle sources changed from 1999–2008 in Baltim
 
 vehiclesBaltimoreData <- completeData %.% filter(fips == "24510") %.% filter(scc_level_one == 
     "Internal Combustion Engines")
-```
-
-```
-## Error: object 'completeData' not found
-```
-
-```r
 
 p5 <- ggplot(data = vehiclesBaltimoreData, aes(x = year, y = emissions))
-```
-
-```
-## Error: object 'vehiclesBaltimoreData' not found
-```
-
-```r
 p5 <- p5 + geom_bar(stat = "identity", aes(fill = -year))
+p5
 ```
 
-```
-## Error: object 'p5' not found
-```
+<img src="figure/prob5Chunk.png" title="plot of chunk prob5Chunk" alt="plot of chunk prob5Chunk" style="display: block; margin: auto;" />
 
 
 
@@ -222,29 +214,23 @@ p5 <- p5 + geom_bar(stat = "identity", aes(fill = -year))
 Compare emissions from motor vehicle sources in Baltimore City with emissions from motor vehicle sources in Los Angeles County, California (fips == "06037"). Which city has seen greater changes over time in motor vehicle emissions?
 
 
+- Use the same technique as previously, just add an or condition to accept Los Angeles data as well.
+
+
 ```r
 vehicles2CitiesData <- completeData %.% filter(fips == "24510" | fips == "06037") %.% 
     filter(scc_level_one == "Internal Combustion Engines")
+
+p6 <- ggplot(data = vehicles2CitiesData, aes(x = year, y = emissions))
+p6 <- p6 + geom_bar(stat = "identity", aes(fill = -year)) + facet_grid(. ~ fips)
+p6
 ```
 
-```
-## Error: object 'completeData' not found
-```
+<img src="figure/prob6Chunk.png" title="plot of chunk prob6Chunk" alt="plot of chunk prob6Chunk" style="display: block; margin: auto;" />
 
-```r
 
-p5 <- ggplot(data = vehicles2CitiesData, aes(x = year, y = emissions))
-```
+Answer:
+L.A. has much more motor vehicular pollution as compared to Baltimore city. And lately it has been on rise in L.A. which is not a good sign either.
 
-```
-## Error: object 'vehicles2CitiesData' not found
-```
 
-```r
-p5 <- p5 + geom_bar(stat = "identity", aes(fill = -year)) + facet_grid(. ~ fips)
-```
-
-```
-## Error: object 'p5' not found
-```
 

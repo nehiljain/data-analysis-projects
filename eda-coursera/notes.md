@@ -17,6 +17,10 @@ Principles of Analytics Graphics
 
 Try and create vague questions. 
 
+Rules out certain questions based on the data set.
+
+
+
 
 ## Purpose
 
@@ -120,6 +124,9 @@ This is good to visualise mutltidimensional data
 ### Common - Agglomerative Approach
 
 You calculate the dist function. 	
+
+
+
 
 
 To Do
