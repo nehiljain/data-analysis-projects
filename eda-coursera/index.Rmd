@@ -110,6 +110,10 @@ Of the four types of sources indicated by the type (point, nonpoint, onroad, non
 ```{r prob3Chunk, fig.align='center', cache=TRUE, tidy=TRUE}
 p3 <- p2 + facet_grid(. ~ type)
 p3
+
+
+p7 <- ggplot(data = BaltimoreData, aes(x = year, y = emissions), group=type, colors=type) + geom_line() + geom_point()
+
 ```
 
 Answer:
