@@ -1,8 +1,4 @@
 
-This is a project done by Nehil and Priyank to visualise State of affairs in Healthcare in India.
-
-
-
 
 Healthcare in India
 ===========================
@@ -34,35 +30,32 @@ In this part of data analysis we analyse the efforts made by respective governme
 Data Source
 ------------
 
-We undertake this exploration to explore following to dataset. All the analysis done by us is statewise.
+We undertake this exploration to explore following two datasets. All the analysis done by us is statewise.
 
-* [Shortfall in Health Infrastructure during Eleventh Plan]
-* [Infant Mortality Rates in 2011]
-* [Shortfall in Manpower in the Phcs and Chcs]
+* [Shortfall in Health Infrastructure during Eleventh Plan](http://data.gov.in/catalog/shortfall-health-infrastructure-during-eleventh-plan#web_catalog_tabs_block_10)
+* [Number of Sub-Centres, Primary Health Centres and Community Health Centres Established During Five Year Plans](http://data.gov.in/catalog/number-sub-centres-primary-health-centres-and-community-health-centres-established-during#web_catalog_tabs_block_10)
+
+
 
 --------------------------------------------------------
 
 
 Exploration
 -----------
-(questions which we wish to explore from the data)
-
-We combine the above mentioned datasets to analyse the efforts made by the government depending upon the situation of the healthcare requirements of that particular state.
+This being a exploratory analysis, I am not aware if the data has any meaning or is good enought to answer questions. I apply the exploratory graphics principles and try to select the important features of the dataset. I the resulting analysis, I combine the above mentioned datasets to analyse the efforts made by the government depending upon the situation of the healthcare requirements of that particular state.
 
 There are several questions which we wish to contemplate from the data.
-* Whether the efforts made by the respective state government are in alignment with the current scenario of healthcare in their state.
-* Which state lacks in the necessary healthcare centres the most, viz-a-viz ,Health Sub-centres (SCs) Community Health Centre(CHCs), Primary Health Centres (PHCs)
-* Are the state governments under-investing on basic healthcare issues 
-* How have the State governments to the shortfalls in the number of health centres from their 11<sup>th</sup> plan to 12<sup>th</sup> plan.
-
+* Whether the efforts made by the respective state government are in alignment with the current scenario of healthcare in their state?
+* Which state lacks in the necessary healthcare centres the most, viz-a-viz Health Sub-centres (SCs) Community Health Centre(CHCs), Primary Health Centres (PHCs)?
+* Are the state governments under-investing on basic healthcare issues? 
+* How have the State governments to the shortfalls in the number of health centres from their 11<sup>th</sup> plan to 12<sup>th</sup> plan?
 
 
 
 Sub Center Shortfalls
 ----------------------
 
-The summary of sub cnter shortfalls. 
-Evidently the Mean and Median are higher as compared to Public Health Center and Community Health Center.
+Evidently the Mean and Median are higher in the SC shortfall as compared to PHC and CH Centers. This means that in general the necessity of SC infrastrucure supercedes other centers. 
 
 Some states to be worried about are *Uttar Pradesh* and *Bihar*. Which is contrary to the promises made by the health Minister at the time here in the [TOI article](http://timesofindia.indiatimes.com/city/patna/Health-sub-centre-at-every-village-in-state/articleshow/7174791.cms).There is already a surplus in Kerala and Govt. si still working in imporving the sub center infrastructre.
 
@@ -110,12 +103,6 @@ Community Health Center Shortfalls
 
 
 ![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7.png) 
-
-
-
-
-
-
 
 
 
