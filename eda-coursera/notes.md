@@ -126,6 +126,27 @@ This is good to visualise mutltidimensional data
 You calculate the dist function. 	
 
 
+# K - Means
+
+Distance Matrix
+
+- Continuous - euclidean
+- Continuous - correlation
+- Binary - Manhattan
+
+What to do?
+
+- Find Distance matrix for your problem
+- Guess the number of clusters
+- Starting centroid - Can be random too.
+
+
+
+
+
+
+
+
 
 
 
